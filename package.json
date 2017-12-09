@@ -1,6 +1,6 @@
 {
   "name": "get-selector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generates a unique CSS selector that will match only the passed element.",
   "author": "Tyler Peterson <tylerjpeterson@gmail.com>",
   "main": "./index.js",
