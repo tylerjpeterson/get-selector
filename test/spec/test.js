@@ -48,4 +48,18 @@ test('should build a unique selector for any DOM element', assert => {
 	assert.end();
 });
 
+test('should build selector from ancestor with mixed-type siblings', assert => {
+	document.body.innerHTML = '<div><h2>header</h2><div><span class="t"></span></div></div>';
+
+	var element = document.querySelector('span');
+	assert.equal(getSelector(element), 'html > body > div:nth-child(1) > div:nth-child(2) > span:nth-child(1)');
+
+	document.body.innerHTML = '<div><div><span><span class="t"></span></span><em></em></div></div>';
+
+	element = document.querySelector('.t');
+	assert.equal(getSelector(element), 'html > body > div:nth-child(1) > div:nth-child(1) > span:nth-child(1) > span:nth-child(1)');
+
+	assert.end();
+});
+
 window.close();

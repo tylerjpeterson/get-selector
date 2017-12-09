@@ -16,6 +16,9 @@ module.exports = function (el) {
 	// Query parts collection
 	var s = [];
 
+	// Current element's tag name
+	var t = null;
+
 	// Not a valid DOM element
 	if (!isEl(el)) {
 		return false;
@@ -37,10 +40,13 @@ module.exports = function (el) {
 			// Get the element's position amongst its
 			// siblings to build an "nth-child" selector
 			} else {
+				// Grab tagName before iterating through
+				// siblings in case there is mixed ancestry
+				t = el.tagName.toLowerCase();
 				for (i = 1; el.previousElementSibling; i++) {
 					el = el.previousElementSibling;
 				}
-				s.unshift(el.tagName.toLowerCase() + ':nth-child(' + i + ')');
+				s.unshift(t + ':nth-child(' + i + ')');
 			}
 			// Repeat for parent
 			el = el.parentNode;
