@@ -12,3 +12,4 @@ temp/
 /coverage
 tmp/
 docs/
+package-lock.json
