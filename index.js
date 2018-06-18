@@ -6,7 +6,7 @@ var isEl = require('is-el');
  * @module getSelector
  * @description Generates a unique CSS selector that will match only the passed element.
  *
- * @param {element} element - target element
+ * @param {element} el - target element
  * @return {(string|boolean)} CSS selector that will return only the passed element, false if element is not valid
  */
 module.exports = function (el) {

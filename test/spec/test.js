@@ -2,7 +2,7 @@
 
 const _ = require('lodash');
 const test = require('tape');
-const getSelector = require('./../../');
+const getSelector = require('./../..');
 
 document.body.innerHTML = '<div style="display: none;"><ul><li></li><li></li><li><a href="linkOne" class="linkOne"></a><a href="linkTwo" class="linkTwo"></a><a href="linkThree" class="linkThree"></a></li></ul><ul><li class="itemOne first"><a href="linkOne" class="linkOne"></a><a href="linkTwo" class="linkTwo"></a><a href="linkThree" class="linkThree"></a></li><li class="itemTwo" id="list-item-two"><a href="linkOne" class="list-item-two-link-one"></a><a href="linkTwo"></a><a href="linkThree"></a><a></a><a href="linkOne" class="classOne classTwo classThree"></a><a href="linkTwo" target="someTarget2" rel="someRel" class="classOne classTwo classThree"></a><a href="linkThree" target="someTarget" rel="someRel" class="classOne classTwo classThree" id="linkZero"></a></li><li class="itemThree last"><a href="linkOne" id="linkOne" class="classOne classTwo classThree"></a><a href="linkTwo" id="linkTwo"></a><a href="linkThree" id="linkThree"></a></li></ul></div>';
 
