@@ -70,3 +70,125 @@ Run tests and coverage:
 $ npm test
 $ npm run coverage
 ```
+
+## Sample output
+
+All output below assumes the following markup:
+
+```html
+<div class="demo">
+  <ul>
+    <li></li>
+    <li></li>
+    <li>
+      <a href="linkOne" class="linkOne"></a>
+      <a href="linkTwo" class="linkTwo"></a>
+      <a href="linkThree" class="linkThree"></a>
+    </li>
+  </ul>
+  <ul>
+    <li class="itemOne first">
+      <a href="linkOne" class="linkOne"></a>
+      <a href="linkTwo" class="linkTwo"></a>
+      <a href="linkThree" class="linkThree"></a>
+    </li>
+    <li class="itemTwo" id="list-item-two">
+      <a href="linkOne" class="list-item-two-link-one"></a>
+      <a href="linkTwo"></a>
+      <a href="linkThree"></a>
+      <a></a>
+      <a href="linkOne" class="classOne classTwo classThree"></a>
+      <a href="linkTwo" target="someTarget2" rel="someRel" class="classOne classTwo classThree"></a>
+      <a href="linkThree" target="someTarget" rel="someRel" class="classOne classTwo classThree" id="linkZero"></a>
+    </li>
+    <li class="itemThree last">
+      <a href="linkOne" id="linkOne" class="classOne classTwo classThree"></a>
+      <a href="linkTwo" id="linkTwo"></a>
+      <a href="linkThree" id="linkThree"></a>
+    </li>
+  </ul>
+</div>
+```
+
+***
+
+Basic usage:
+
+```js
+getSelector(document.querySelector('.demo li.last'))
+```
+
+```
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(3)
+```
+
+***
+
+Invalid element:
+
+```js
+getSelector(document.querySelector('#i-do-not-exist'))
+```
+
+```
+false
+```
+
+***
+
+Closest descendant with an ID attribute:
+
+```js
+getSelector(document.querySelector('.demo .list-item-two-link-one'))
+```
+
+```
+#list-item-two > a:nth-child(1)
+```
+
+***
+
+Build selector from document Element if no ancestors have an id:
+
+```js
+getSelector(document.querySelector('.demo .linkThree'))
+```
+
+```
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(3)
+```
+
+***
+
+Build a unique selector for any DOM element:
+
+```js
+.demo *
+```
+
+```
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(1)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(2)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(3)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(2)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(3)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(1)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(2)
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(1) > a:nth-child(3)
+#list-item-two
+#list-item-two > a:nth-child(1)
+#list-item-two > a:nth-child(2)
+#list-item-two > a:nth-child(3)
+#list-item-two > a:nth-child(4)
+#list-item-two > a:nth-child(5)
+#list-item-two > a:nth-child(6)
+#linkZero
+html > body > main:nth-child(3) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(3)
+#linkOne
+#linkTwo
+#linkThree
+```
