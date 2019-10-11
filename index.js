@@ -30,12 +30,12 @@ module.exports = function (el) {
 		// build selector from all previous parts
 		if (el.id) {
 			s.unshift('#' + el.id);
+
 			break;
 		} else {
 			// Reached the body or html tag -
 			// add the tag to the parts collection
-			if (el === el.ownerDocument.documentElement ||
-				el === el.ownerDocument.body) {
+			if (el === el.ownerDocument.documentElement || el === el.ownerDocument.body) {
 				s.unshift(el.tagName.toLowerCase());
 			// Get the element's position amongst its
 			// siblings to build an "nth-child" selector
@@ -43,11 +43,14 @@ module.exports = function (el) {
 				// Grab tagName before iterating through
 				// siblings in case there is mixed ancestry
 				t = el.tagName.toLowerCase();
+
 				for (i = 1; el.previousElementSibling; i++) {
 					el = el.previousElementSibling;
 				}
+
 				s.unshift(t + ':nth-child(' + i + ')');
 			}
+
 			// Repeat for parent
 			el = el.parentNode;
 		}

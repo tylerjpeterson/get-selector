@@ -6,11 +6,11 @@
   "main": "./index.js",
   "scripts": {
     "coverage": "mkdir -p coverage && browserify test/spec/test.js -p tape-istanbul/plugin | tape-run | tape-istanbul --output coverage/coverage.json && npm run report",
+    "lint": "xo --no-esnext ./index.js || true && xo --no-esnext ./test/spec/test.js || true",
     "report": "istanbul report --root coverage lcov && open coverage/lcov-report/index.html",
     "demo": "mkdir -p tmp/ && browserify test/examples/js/demo.js -o tmp/demo.js",
     "test": "browserify test/spec/test.js | browser-run | tap-spec",
-    "docs": "jsdoc index.js -p -d docs/",
-    "lint": "xo --no-esnext ./index.js || true && xo --no-esnext ./test/spec/test.js || true"
+    "docs": "jsdoc index.js -p -d docs/"
   },
   "dependencies": {
     "is-el": "^1.0.0"

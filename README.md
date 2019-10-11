@@ -10,7 +10,6 @@ of complexity and usually accuracy.
 
 This one prioritizes speed and accuracy.
 If you have an invalid DOM, results will vary.
-If you have duplicate or invalid `id` attributes, results will _really_ vary.
 
 ***
 
